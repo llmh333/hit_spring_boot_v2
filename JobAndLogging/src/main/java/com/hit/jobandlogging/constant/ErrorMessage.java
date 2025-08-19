@@ -3,6 +3,7 @@ package com.hit.jobandlogging.constant;
 public class ErrorMessage {
 
     public static final String FIELD_CANNOT_BE_NULL = "valid.field.cannot.be.null";
+    public static final String FIELD_CANNOT_BE_BLANK= "valid.field.cannot.be.blank";
     public static final String INTERNAL_SERVER_ERROR = "exception.internal.server.error";
 
     public static class Auth {

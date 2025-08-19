@@ -4,6 +4,8 @@ import com.hit.jobandlogging.constant.ErrorMessage;
 import com.hit.jobandlogging.exception.UnauthorizedException;
 import io.jsonwebtoken.*;
 import io.jsonwebtoken.security.Keys;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 
@@ -14,6 +16,7 @@ import java.util.Date;
 @Component
 public class JwtProvider {
 
+    private static final Logger log = LogManager.getLogger(JwtProvider.class);
     @Value("${spring.jwt.key}")
     private String SECRET_KEY;
 
@@ -39,6 +42,7 @@ public class JwtProvider {
             expirationTime = expirationTime + EXPIRATION_ACCESS_TOKEN*3600000*24;
         }
         Date expirationDate = new Date(expirationTime);
+        log.info("expirationDate: {}", expirationDate);
         return Jwts.builder()
                 .setSubject(userPrincipal.getUsername())
                 .setIssuedAt(now)
